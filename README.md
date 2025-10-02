@@ -8,7 +8,7 @@ Overview
 This repository contains story projects and assets for multiple storylines. The README files across the codebase have been standardized to include an ASCII folder structure snapshot and a short status. The `3-prototypes` folder is intentionally ignored for README updates per project direction.
 
 ASCII folder structure (snapshot)
-
+'''
 /
 ├── readme.md
 ├── 1-SPY/
@@ -56,6 +56,8 @@ ASCII folder structure (snapshot)
     ├── AGENTS.md
     ├── GVD.md
     └── README.md
+
+'''
 
 Status summary
 
