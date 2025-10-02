@@ -1,0 +1,135 @@
+# STORY-BOOK
+
+Repository overview and ASCII folder structure snapshot.
+
+Version: 0.1.0
+Last-Updated: 2025-10-02
+
+Root structure (snapshot):
+
+```
+readme.md
+1-SPY/
+	docs/
+		canva-prompt.txt
+		canva-V!.html
+		canva.html
+		character.md
+		context.txt
+		index.html
+		interactive-flow.json
+		scene-prompts
+		scrceenplay-sequence.txt
+		screenplay.md
+		ST-plan.md
+		steps.md
+		timeline.md
+		wb-notes.md
+		claude/
+			AGENTS-V1.txt
+			agents.md
+			json-prompt-app.md
+		SPY-GAME-HTML/
+			AGENTS.md
+			dossier_prototype.html
+			index.html
+			package.json
+			README.md
+			SPY.md
+			assets/
+				README.md
+				audio/
+					ambient/
+						README.md
+					sfx/
+						README.md
+					voice/
+				images/
+					backgrounds/
+					characters/
+					evidence/
+				video/
+					README.md
+			docs/
+				README.md
+				STORY-STRUCTURE.md
+				TECHNICAL-SPECS.md
+			js/
+				animations.js
+				app.js
+				evidence.js
+				motifs.js
+				navigation.js
+				pov.js
+				README.md
+				swup-config.js
+				timeline.js
+			nodes/
+				investigation/
+					s07-follow-leads.html
+					s08-interrogate.html
+					s09-dark-alley.html
+				investigation-beginnings/
+					s01-rainy-streets.html
+					s02-first-clue.html
+					s03-suspect-intro.html
+				moral-dilemmas/
+					s10-expose-official.html
+					s11-protect-friend.html
+					s12-consequences.html
+				resolution/
+					s13-final-confrontation.html
+					s14-case-closed.html
+				underworld/
+					s04-mafia-ties.html
+					s05-corridor-escape.html
+					s06-betrayal.html
+	SPY-GAME-HTML/
+	SPY-WEB/
+		astro.config.mjs
+		package.json
+		postcss.config.cjs
+		readme.md
+		tailwind.config.cjs
+		tsconfig.json
+		src/
+			env.d.ts
+			components/
+				CharactersModal.jsx
+				DecryptedText.jsx
+				FilmsCarousel.jsx
+				HeroContent.jsx
+				ParallaxZoom.jsx
+			data/
+				cases.json
+				characters.json
+				films.json
+				raw-content.txt
+				timeline.json
+			layouts/
+				Layout.astro
+			pages/
+				dossier.astro
+				index.astro
+				case/
+					[id].astro
+					01.astro
+				character/
+					[id].astro
+			public/
+				main.js
+				images/
+					c6138875-a9c0-4dab-a7f1-66a261c7671e.png
+				video/
+			styles/
+				global.css
+			types/
+				index.ts
+2-CIVIL/
+	AGENTS.md
+	GVD.md
+	README.md
+
+```
+
+Status: Mixed — multiple READMEs present; several placeholders. See subfolder READMEs for details.

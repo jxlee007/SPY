@@ -1,3 +1,8 @@
 # GAME-1-SPY - Docs
 
-Project docs and instructions placeholder.
+Version: 0.1.0
+Last-Updated: 2025-10-02
+
+Purpose: Documentation and design notes for the SPY game prototype.
+
+Status: Placeholder. Migrate design docs and technical specs into this folder.
