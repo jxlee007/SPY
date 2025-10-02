@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="SHADOW OF SHADES "><title>Dossier — Shadow Protocol</title><!-- GSAP + ScrollTrigger --><script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.B7bbSjmM.js"></script><script type="module" src="/_astro/Layout.astro_astro_type_script_index_1_lang.Bdfx0LuQ.js"></script><!-- Preload critical assets --><link rel="preload" href="/images/c6138875-a9c0-4dab-a7f1-66a261c7671e.png" as="image"><link rel="stylesheet" href="/_astro/01.g_eeqhZM.css">
+<link rel="stylesheet" href="/_astro/01.BofUWlnk.css"></head> <body class="antialiased overflow-x-hidden" data-astro-cid-sckkx6r4> <div id="swup" data-swup data-astro-cid-sckkx6r4>  <main class="dossier-main loading" data-swup-transition> <a class="back-btn" href="/" aria-label="Back to Home">← BACK</a> <section class="dossier-access" aria-labelledby="dossier-heading"> <div class="access-meta"> <h1 id="dossier-heading">Accessing case-file: <span class="mono">1985-007</span></h1> <div class="access-panel" role="status" aria-live="polite" aria-atomic="true"> <div class="access-header"> <span class="access-badge">ACCESSING</span> <span class="access-title">CLASSIFIED FILES</span> </div> <div class="progress-wrap" aria-hidden="true"> <div class="progress-track"> <div class="progress-fill" id="decrypt-line"></div> </div> </div> <div class="loader-info small">Decrypting... <span id="decrypt-percent">0</span>%</div> </div> </div> </section> <div class="dossier-content" style="opacity: 0; pointer-events: none;"> <section class="dossier-main-content"> <h2 class="dossier-title">DOSSIER</h2> <nav class="timeline-nav" role="navigation" aria-label="Timeline filter"> <h3 class="sr-only">TIMELINE NAV BAR</h3> <div class="pills" role="tablist" aria-label="Filter timeline by decade"> <button class="pill" data-year="all" aria-pressed="true">All</button> <button class="pill" data-year="1985">1985</button> <button class="pill" data-year="1990s">1990s</button> <button class="pill" data-year="2001">2001</button> <button class="pill" data-year="2010s">2010s</button> <button class="pill" data-year="Present">Present</button> </div> </nav> <section class="timeline-entries" aria-label="Timeline entries"> <h3 class="section-title">TIMELINE ENTRIES — Chapters as Case-Study Cards</h3> <div class="grid cases-grid" id="cases-grid" aria-live="polite" aria-busy="true"> <!-- Dynamic cards will be rendered here by client-side script. Skeletons are shown while data loads. --> </div> </section> </section> </div> </main>  <script>window.__CASES = [{"id":"01","slug":"/case/01","title":"01 • LOREM IPSUM","date":"2020","summary":"Placeholder summary for case 01.","tags":["#alpha","#protocol"],"year":"2020s"},{"id":"02","slug":"/case/02","title":"02 • DOLOR SIT","date":"2021","summary":"Placeholder summary for case 02.","tags":["#beta","#classified"],"year":"2020s"}];</script> <script type="module" src="/_astro/dossier.astro_astro_type_script_index_0_lang.BihybO_g.js"></script>  </div> <!-- Enhanced main.js script --> <script src="/main.js" defer></script> <!-- CSS custom properties for theming -->  <!-- Page transition overlay script --> <script>
+      // @ts-nocheck
+      // Initialize page transition overlay
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          // Create transition overlay element
+          const overlay = document.createElement('div');
+          overlay.className = 'page-transition-overlay';
+          overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10,10,10,0.95), rgba(0,0,0,0.98));
+            z-index: 9999;
+            pointer-events: none;
+          `;
+          document.body.appendChild(overlay);
+
+          function animateOverlayIn() {
+            return new Promise((resolve) => {
+              if (window.gsap && typeof window.gsap.fromTo === 'function') {
+                // slide in from left
+                window.gsap.fromTo(overlay,
+                  { x: '-100%' },
+                  { x: '0%', duration: 0.45, ease: 'power2.out', onComplete: resolve }
+                );
+              } else {
+                // CSS fallback: set transform and use transition
+                overlay.style.transition = 'transform 0.45s cubic-bezier(.2,.9,.2,1)';
+                overlay.style.transform = 'translateX(0)';
+                setTimeout(resolve, 460);
+              }
+            });
+          }
+
+          function animateOverlayOut() {
+            return new Promise((resolve) => {
+              if (window.gsap && typeof window.gsap.to === 'function') {
+                // slide back to left
+                window.gsap.to(overlay, { x: '-100%', duration: 0.38, ease: 'power2.in', onComplete: () => {
+                  overlay.style.pointerEvents = 'none';
+                  resolve();
+                }});
+              } else {
+                overlay.style.transition = 'transform 0.38s cubic-bezier(.2,.9,.2,1)';
+                overlay.style.transform = 'translateX(-100%)';
+                setTimeout(() => { 
+                  overlay.style.pointerEvents = 'none'; 
+                  resolve(); 
+                }, 400);
+              }
+            });
+          }
+
+          // Intercept internal link clicks and run overlay animation before navigating
+          document.addEventListener('click', (e) => {
+            if (!e.target) return;
+            const target = e.target;
+            const anchor = target.closest ? target.closest('a') : null;
+            if (!anchor) return;
+
+            const href = anchor.getAttribute('href');
+            // ignore empty, external, anchors, mailto, downloads, and same-page hashes
+            if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http') || href.startsWith('javascript:')) return;
+            // allow links that have target or download attribute to behave normally
+            if (anchor.target && anchor.target !== '' || anchor.hasAttribute('download')) return;
+
+            const url = new URL(href, window.location.href);
+            if (url.origin !== window.location.origin) return; // external
+
+            // Allow same-page hash navigation without overlay
+            if (url.pathname === window.location.pathname && url.hash) return;
+
+            // Use overlay + swup navigation
+            e.preventDefault();
+            const targetPath = url.pathname + url.search + url.hash;
+
+            // Animate overlay in, then trigger swup navigation
+            animateOverlayIn().then(() => {
+              try {
+                const swup = window.__swup;
+                if (swup && typeof swup.visit === 'function') {
+                  swup.visit(targetPath);
+                } else {
+                  // fallback to direct navigation
+                  window.location.href = targetPath;
+                }
+              } catch (err) {
+                console.warn('navigation failed, fallback to location.href', err);
+                window.location.href = targetPath;
+              }
+            });
+          }, { passive: false });
+
+          // When swup replaces content, hide the overlay (content is now visible)
+          const swup = window.__swup;
+          if (swup && typeof swup.on === 'function') {
+            swup.on('contentReplaced', () => {
+              animateOverlayOut();
+              // Re-run any page-init code if needed here (optional)
+            });
+
+            // Also animate overlay out if navigation is cancelled or fails
+            swup.on('popState', () => {
+              // popState can be used to trigger overlay out after history navigation
+              animateOverlayOut();
+            });
+          }
+        } catch (e) {
+          console.warn('overlay transition init skipped', e);
+        }
+      });
+    </script> </body> </html>
