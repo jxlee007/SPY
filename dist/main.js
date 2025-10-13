@@ -29,7 +29,52 @@ document.addEventListener('DOMContentLoaded', () => {
               scrub: 1
             }
           });
+          
         }
+
+        // Batch / section-scoped fade: fade all .scroll-reveal items inside
+        // the centered section when the section top moves from ~30% -> 20% of viewport.
+        // Uses a scrubbed timeline so the fade is reversible when scrolling back.
+        (function() {
+          const fadeSection = document.querySelector('div.max-w-6xl.mx-auto.px-6.py-20');
+          if (!fadeSection) return;
+
+          const items = fadeSection.querySelectorAll('.scroll-reveal');
+          if (!items || items.length === 0) return;
+
+          // set willChange for performance
+          items.forEach(it => {
+            if (it instanceof HTMLElement) {
+              it.style.willChange = 'opacity, transform';
+            }
+          });
+
+          // Ensure initial state
+          gsapAny.set(items, { opacity: 1, y: 0 });
+
+          // Create a scrubbed timeline that maps scroll progress to opacity/translate
+          gsapAny.timeline({
+            scrollTrigger: {
+              trigger: fadeSection,
+              start: 'top 30%',
+              end: 'top 20%',
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+              markers: Boolean(isDev)
+            }
+          })
+          .to(items, {
+            opacity: 0,
+            y: -12,
+            ease: 'none',
+            stagger: 0.03
+          });
+
+          // On refresh we keep will-change and let the timeline handle reappearance.
+          ScrollTriggerAny.addEventListener && ScrollTriggerAny.addEventListener('refresh', () => {
+            // placeholder for future adjustments
+          });
+        })();
       
         // Header fade animation
         const header = document.getElementById('main-header');
