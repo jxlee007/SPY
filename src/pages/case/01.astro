@@ -5,8 +5,8 @@ import type { Case, Evidence, Connection } from '../../types/index';
 // Import JSON with proper typing
 const casesData: Case[] = await import('../../data/cases.json').then(m => m.default);
 
-// Find the specific case
-const caseData = casesData.find(c => c.id === '01');
+// Find the specific case. Be tolerant of IDs like '01a' or '01-01' in the data
+const caseData = casesData.find(c => c.id === '01' || String(c.id).startsWith('01'));
 if (!caseData) {
   throw new Error('Case 01 not found');
 }
