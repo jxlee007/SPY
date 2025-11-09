@@ -1,4 +1,4 @@
-# Shadow Protocol - Spy Game Interface
+# SHADES OF THE SHADOWS
 
 A cinematic spy thriller interface built with Astro, React, TailwindCSS, and GSAP. Features immersive animations, character profiles, and case file investigations.
 
