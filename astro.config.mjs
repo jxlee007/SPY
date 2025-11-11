@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [react(), tailwind()],
-  site: 'http://localhost:4321',
+  site: '',
   // Serve static assets from src/public so references like /main.js and /images/* work
   publicDir: 'src/public',
   vite: {
